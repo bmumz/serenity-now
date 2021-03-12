@@ -1,20 +1,17 @@
 <template>
-  <div>
-    <span>
-      <!-- remaining time -->
-      {{ formattedTimeLeft }}
-    </span>
+  <div class="countdown">
+    <h3>
+      ⏰
+      <span>
+        <!-- remaining time -->
+        {{ formattedTimeLeft }}
+      </span>
+    </h3>
   </div>
 </template>
 <script>
 export default {
   name: 'Timer',
-  // props: {
-  //   timeLeft: {
-  //     type: Number,
-  //     required: true,
-  //   },
-  // },
   data() {
     return {
       isRunning: false,
@@ -57,4 +54,9 @@ export default {
   },
 };
 </script>
-<style scoped></style>
+<style scoped>
+.countdown {
+  display: flex;
+  align-items: center;
+}
+</style>

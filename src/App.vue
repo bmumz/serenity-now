@@ -2,9 +2,12 @@
   <div id="app">
     <Header msg="Serenity Now!" />
     <div class="game-container">
-      <Timer />
-      <Quotes v-on:random-quote="checkQuote" />
-      <Characters v-on:chosen-character="checkCharacter" />
+      <div class="scoring-container">
+        <Timer />
+        <Points />
+      </div>
+      <Quotes />
+      <Characters />
     </div>
   </div>
 </template>
@@ -12,6 +15,7 @@
 <script>
 import Header from './components/Header.vue';
 import Timer from './components/Timer.vue';
+import Points from './components/Points.vue';
 import Quotes from './components/Quotes.vue';
 import Characters from './components/Characters.vue';
 
@@ -20,6 +24,7 @@ export default {
   components: {
     Header,
     Timer,
+    Points,
     Quotes,
     Characters,
   },
@@ -32,18 +37,7 @@ export default {
     };
   },
   computed: {},
-  methods: {
-    checkCharacter(name) {
-      this.character = name;
-      if (this.character === this.author) {
-        alert('test');
-      }
-    },
-    checkQuote(quote, author) {
-      this.quote = quote;
-      this.author = author;
-    },
-  },
+  methods: {},
 };
 </script>
 
@@ -60,8 +54,7 @@ export default {
   max-width: 50rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  color: #eee;
   margin-top: 60px;
 }
 
@@ -69,5 +62,11 @@ export default {
   margin-top: 2rem;
   padding: 3rem;
   background: #1c4a9f;
+}
+
+.scoring-container {
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem;
 }
 </style>

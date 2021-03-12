@@ -1,47 +1,25 @@
 <template>
-  <div>
-    <div class="quote-container">
-      <h2 class="quote">
-        <span class="quote-highlight">{{ quote }}</span>
-      </h2>
-      <h2>{{ author }}</h2>
-      <Button :onClick="getRandom"><div slot="content">New Quote</div></Button>
-    </div>
+  <div class="quote-container">
+    <h1 class="quote">
+      <span class="quote-highlight"> {{ randomQuote.quote }}</span>
+    </h1>
+
+    <!-- <Button :onClick="getNewQuote"><div slot="content">New Quote</div></Button> -->
   </div>
 </template>
 <script>
-import QuotesApi from '../api/getQuotes';
-import Button from './Button.vue';
+import { mapGetters, mapActions } from 'vuex';
+// import Button from './Button.vue';
 
 export default {
   name: 'Quotes',
-  components: { Button },
-  data() {
-    return {
-      quotes: null,
-      quote: null,
-      author: null,
-    };
-  },
-  created() {
-    this.getRandom();
-  },
+  // components: { Button },
   methods: {
-    getRandom() {
-      QuotesApi.getQuotes()
-        .then((quotes) => {
-          this.quotes = quotes;
-          const getRandomIndex = Math.floor(Math.random() * quotes.length);
-          const getRandomQuote = quotes[getRandomIndex];
-          this.quote = getRandomQuote.quote;
-          this.author = getRandomQuote.author;
-
-          const quote = this.quote;
-          const author = this.author;
-          this.$emit('random-quote', quote, author);
-        })
-        .catch((error) => console.log(error));
-    },
+    ...mapActions(['fetchQuotes']),
+  },
+  computed: mapGetters(['randomQuote']),
+  created() {
+    this.fetchQuotes();
   },
 };
 </script>
@@ -49,8 +27,9 @@ export default {
 .quote-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: flex-end;
-
+  height: 15rem;
   padding-bottom: 4rem;
 }
 
@@ -61,6 +40,7 @@ export default {
   color: red;
   text-shadow: 0px 1px #000000;
   line-height: 1.25;
+  padding: 0 4rem;
 }
 .quote-highlight {
   box-shadow: inset 0 -35px rgba(255, 217, 0);
