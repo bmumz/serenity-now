@@ -13,8 +13,6 @@ import { mapGetters } from 'vuex';
 
 export default {
   name: 'Points',
-  methods: {},
-
   computed: { ...mapGetters(['getScore']) },
 };
 </script>

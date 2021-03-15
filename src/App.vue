@@ -6,9 +6,7 @@
         <Timer />
         <Points />
       </div>
-
       <Quotes />
-
       <Characters />
     </div>
   </div>
@@ -23,6 +21,9 @@ import Characters from './components/Characters.vue';
 
 export default {
   name: 'App',
+  metaInfo: {
+    title: 'Serenity Now! | Seinfeld Quiz',
+  },
   components: {
     Header,
     Timer,

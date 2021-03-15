@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click.prevent="onClick" :class="buttonClass">
+    <button @click.prevent="onClick">
       <slot name="content"></slot>
     </button>
   </div>
@@ -10,7 +10,6 @@ export default {
   name: 'Button',
   props: {
     onClick: null,
-    buttonClass: String,
   },
 };
 </script>

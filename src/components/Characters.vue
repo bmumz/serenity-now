@@ -19,7 +19,7 @@
   </div>
 </template>
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'Characters',
@@ -33,14 +33,7 @@ export default {
       ],
     };
   },
-  computed: mapGetters([
-    'randomQuote',
-    'getScore',
-    'getChar',
-    'handleStartGame',
-    'handleResult',
-    'handleCountdown',
-  ]),
+  computed: mapGetters(['randomQuote', 'getChar', 'handleStartGame']),
   methods: {
     ...mapActions(['getRandomQuote', 'startTimer', 'stopTimer']),
     handleChooseCharacter(author, character) {

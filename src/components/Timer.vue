@@ -9,13 +9,12 @@
   </div>
 </template>
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'Timer',
-
   computed: {
-    ...mapGetters(['handleCountdown', 'handleStartGame']),
+    ...mapGetters(['handleCountdown']),
     formattedTimeLeft() {
       const timeLeft = this.timeLeft;
       const seconds = timeLeft % 60;
@@ -33,7 +32,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['startTimer', 'stopTimer', 'handleLoss']),
+    ...mapActions(['handleLoss']),
   },
 };
 </script>
