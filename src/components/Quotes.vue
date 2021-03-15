@@ -1,57 +1,45 @@
 <template>
-  <div>
-    <div class="quote-container">
-      <h2 class="quote">
-        <span class="quote-highlight">{{ quote }}</span>
-      </h2>
-      <h2>{{ author }}</h2>
-      <Button :onClick="getRandom"><div slot="content">New Quote</div></Button>
+  <div class="quote-container">
+    <h1 class="quote" v-if="handleStartGame">
+      <span class="highlight"> {{ randomQuote.quote }}</span>
+    </h1>
+    <div v-else class="instructions">
+      <Instructions />
+      <Button :onClick="getNewQuote">
+        <h1 slot="content" class="quote">
+          <span class="highlight">Start!</span>
+        </h1>
+      </Button>
     </div>
   </div>
 </template>
 <script>
-import QuotesApi from '../api/getQuotes';
+import { mapActions, mapGetters } from 'vuex';
 import Button from './Button.vue';
+import Instructions from './Instructions.vue';
 
 export default {
   name: 'Quotes',
-  components: { Button },
-  data() {
-    return {
-      quotes: null,
-      quote: null,
-      author: null,
-    };
-  },
-  created() {
-    this.getRandom();
-  },
+  components: { Button, Instructions },
   methods: {
-    getRandom() {
-      QuotesApi.getQuotes()
-        .then((quotes) => {
-          this.quotes = quotes;
-          const getRandomIndex = Math.floor(Math.random() * quotes.length);
-          const getRandomQuote = quotes[getRandomIndex];
-          this.quote = getRandomQuote.quote;
-          this.author = getRandomQuote.author;
-
-          const quote = this.quote;
-          const author = this.author;
-          this.$emit('random-quote', quote, author);
-        })
-        .catch((error) => console.log(error));
+    ...mapActions(['fetchQuotes', 'getRandomQuote', 'startGame']),
+    getNewQuote() {
+      this.startGame();
+      this.getRandomQuote();
+      this.$store.commit('UPDATE_CHAR', '');
     },
+  },
+  computed: mapGetters(['randomQuote', 'handleStartGame']),
+  created() {
+    this.fetchQuotes();
   },
 };
 </script>
-<style scoped>
+<style>
 .quote-container {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-
-  padding-bottom: 4rem;
+  justify-content: center;
+  margin-top: 1rem;
 }
 
 .quote {
@@ -62,13 +50,25 @@ export default {
   text-shadow: 0px 1px #000000;
   line-height: 1.25;
 }
-.quote-highlight {
+.highlight {
   box-shadow: inset 0 -35px rgba(255, 217, 0);
 }
 
+.instructions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 @media (min-width: 800px) {
-  .quote-container {
-    height: rem;
+  .quote {
+    padding: 0 2rem;
+  }
+}
+
+@media (max-width: 325px) {
+  .quote {
+    font-size: 1.5rem;
   }
 }
 </style>

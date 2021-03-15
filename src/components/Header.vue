@@ -47,4 +47,16 @@ export default {
   border-radius: 75% 45%;
   box-shadow: 2px 2px 0px rgba(0, 0, 0, 1);
 }
+
+@media (max-width: 325px) {
+  .header {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 280px) {
+  .header {
+    font-size: 2.5rem;
+  }
+}
 </style>
