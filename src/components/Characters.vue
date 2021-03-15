@@ -62,9 +62,6 @@ export default {
 };
 </script>
 <style>
-.author {
-  margin-top: 4rem;
-}
 .results {
   display: flex;
   flex-direction: column;
@@ -89,7 +86,7 @@ export default {
   transform: rotate(-15deg);
 }
 .button-img {
-  width: 80px;
+  width: 60px;
 }
 
 @media (min-width: 800px) {
@@ -101,10 +98,6 @@ export default {
 @media (max-width: 320px) {
   .button-img {
     width: 55px;
-  }
-
-  .author {
-    font-size: 1.3rem;
   }
 }
 </style>

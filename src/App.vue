@@ -68,8 +68,17 @@ html {
   align-items: center;
 }
 
+h1 {
+  font-size: 1.25em;
+}
+
+h2 {
+  font-size: 1em;
+}
+
 h3 {
   margin: 0;
+  font-size: 0.75em;
 }
 
 @media (min-width: 800px) {
@@ -78,6 +87,18 @@ h3 {
     flex-direction: row;
     justify-content: space-around;
     padding: 1rem;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }
+
+  h3 {
+    font-size: 1.17em;
   }
 }
 </style>

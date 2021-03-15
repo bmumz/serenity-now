@@ -63,13 +63,7 @@ export default {
 
 @media (min-width: 800px) {
   .quote {
-    padding: 0 2rem;
-  }
-}
-
-@media (max-width: 325px) {
-  .quote {
-    font-size: 1.5rem;
+    padding: 0 1rem;
   }
 }
 </style>
