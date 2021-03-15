@@ -5,7 +5,7 @@ const state = {
   startTimer: false,
   countdown: 10,
   isRunning: null,
-  result: '',
+  showResult: false,
 };
 const getters = {
   getScore: (state) => state.score,
@@ -13,7 +13,7 @@ const getters = {
   startTimer: (state) => state.startTimer,
   handleCountdown: (state) => state.countdown,
   handleStartGame: (state) => state.startGame,
-  handleResult: (state) => state.result,
+  handleResult: (state) => state.showResult,
 };
 
 const actions = {
@@ -36,7 +36,7 @@ const actions = {
     dispatch('startTimer');
   },
   handleLoss({ commit }) {
-    commit('SET_RESULT', 'You are the Lord of the Idiots!');
+    commit('SET_RESULT');
     commit('STOP_GAME');
   },
 };
@@ -62,8 +62,8 @@ const mutations = {
   SET_COUNTDOWN(state, value) {
     state.countdown = value;
   },
-  SET_RESULT(state, value) {
-    state.result = value;
+  SET_RESULT(state) {
+    state.showResult = true;
   },
 };
 
