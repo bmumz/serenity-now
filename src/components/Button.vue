@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="onClick" :class="buttonClass">
+    <button @click.prevent="onClick" :class="buttonClass">
       <slot name="content"></slot>
     </button>
   </div>
@@ -14,4 +14,11 @@ export default {
   },
 };
 </script>
-<style scoped></style>
+<style>
+button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+</style>

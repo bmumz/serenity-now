@@ -6,7 +6,11 @@
         <Timer />
         <Points />
       </div>
+
       <Quotes />
+
+      <!-- <Result /> -->
+
       <Characters />
     </div>
   </div>
@@ -18,6 +22,7 @@ import Timer from './components/Timer.vue';
 import Points from './components/Points.vue';
 import Quotes from './components/Quotes.vue';
 import Characters from './components/Characters.vue';
+// import Result from './components/Result';
 
 export default {
   name: 'App',
@@ -27,17 +32,8 @@ export default {
     Points,
     Quotes,
     Characters,
+    // Result,
   },
-  mounted() {},
-  data() {
-    return {
-      character: '',
-      author: '',
-      quote: '',
-    };
-  },
-  computed: {},
-  methods: {},
 };
 </script>
 
@@ -46,6 +42,11 @@ export default {
   font-family: 'FeniceStd';
   src: local('FeniceStd'),
     url(./assets/FeniceStd-Regular.otf) format('opentype');
+}
+
+html {
+  background: url('https://st2.depositphotos.com/2877797/8113/v/600/depositphotos_81135792-stock-illustration-seamless-background-80s.jpg');
+  max-width: 100vw;
 }
 
 #app {
@@ -66,7 +67,20 @@ export default {
 
 .scoring-container {
   display: flex;
-  justify-content: space-around;
-  padding: 1rem;
+  flex-direction: column;
+  align-items: center;
+}
+
+h3 {
+  margin: 0;
+}
+
+@media (min-width: 800px) {
+  .scoring-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 1rem;
+  }
 }
 </style>

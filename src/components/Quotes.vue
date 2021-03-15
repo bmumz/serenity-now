@@ -1,36 +1,45 @@
 <template>
   <div class="quote-container">
-    <h1 class="quote">
-      <span class="quote-highlight"> {{ randomQuote.quote }}</span>
+    <h1 class="quote" v-if="handleStartGame">
+      <span class="highlight"> {{ randomQuote.quote }}</span>
     </h1>
-
-    <!-- <Button :onClick="getNewQuote"><div slot="content">New Quote</div></Button> -->
+    <div v-else class="instructions">
+      <Instructions />
+      <Button :onClick="getNewQuote">
+        <h1 slot="content" class="quote">
+          <span class="highlight">Start!</span>
+        </h1>
+      </Button>
+    </div>
   </div>
 </template>
 <script>
-import { mapGetters, mapActions } from 'vuex';
-// import Button from './Button.vue';
+import { mapActions, mapGetters } from 'vuex';
+import Button from './Button.vue';
+import Instructions from './Instructions.vue';
 
 export default {
   name: 'Quotes',
-  // components: { Button },
+  components: { Button, Instructions },
   methods: {
-    ...mapActions(['fetchQuotes']),
+    ...mapActions(['fetchQuotes', 'getRandomQuote', 'startGame']),
+    getNewQuote() {
+      this.startGame();
+      this.getRandomQuote();
+      this.$store.commit('UPDATE_CHAR', '');
+    },
   },
-  computed: mapGetters(['randomQuote']),
+  computed: mapGetters(['randomQuote', 'handleStartGame']),
   created() {
     this.fetchQuotes();
   },
 };
 </script>
-<style scoped>
+<style>
 .quote-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  height: 15rem;
-  padding-bottom: 4rem;
+  justify-content: center;
+  margin-top: 1rem;
 }
 
 .quote {
@@ -40,15 +49,26 @@ export default {
   color: red;
   text-shadow: 0px 1px #000000;
   line-height: 1.25;
-  padding: 0 4rem;
 }
-.quote-highlight {
+.highlight {
   box-shadow: inset 0 -35px rgba(255, 217, 0);
 }
 
+.instructions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 @media (min-width: 800px) {
-  .quote-container {
-    height: rem;
+  .quote {
+    padding: 0 2rem;
+  }
+}
+
+@media (max-width: 325px) {
+  .quote {
+    font-size: 1.5rem;
   }
 }
 </style>

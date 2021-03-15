@@ -3,54 +3,37 @@
     <h3>
       ⏰
       <span>
-        <!-- remaining time -->
         {{ formattedTimeLeft }}
       </span>
     </h3>
   </div>
 </template>
 <script>
+import { mapActions, mapGetters } from 'vuex';
+
 export default {
   name: 'Timer',
-  data() {
-    return {
-      isRunning: false,
-      countdown: null,
-      totalSeconds: 10,
-      timePassed: 0,
-    };
-  },
-  mounted() {
-    this.startTimer();
-  },
 
   computed: {
+    ...mapGetters(['handleCountdown', 'handleStartGame']),
     formattedTimeLeft() {
       const timeLeft = this.timeLeft;
       const seconds = timeLeft % 60;
-      const display = seconds + ' seconds remaining!';
+      let display = seconds + ' seconds remaining!';
+
+      if (this.handleCountdown === 0) {
+        display = "time's up!";
+        this.handleLoss();
+      }
 
       return display;
     },
     timeLeft() {
-      return this.totalSeconds - this.timePassed;
+      return this.handleCountdown - 0;
     },
   },
   methods: {
-    startTimer() {
-      this.isRunning = true;
-      this.countdown = setInterval(() => {
-        if (this.totalSeconds <= 0) {
-          this.stopTimer();
-          return;
-        }
-        this.totalSeconds -= 1;
-      }, 1000);
-    },
-    stopTimer() {
-      this.isRunning = false;
-      clearInterval(this.countdown);
-    },
+    ...mapActions(['startTimer', 'stopTimer', 'handleLoss']),
   },
 };
 </script>

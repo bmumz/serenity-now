@@ -1,24 +1,21 @@
 <template>
   <div class="points">
-    <div class="TEST">{{ score }}</div>
     <h3>
       🏅
-      <span> points!</span>
+      <span>{{
+        getScore === 1 ? getScore + ' point!' : getScore + ' points!'
+      }}</span>
     </h3>
   </div>
 </template>
 <script>
-import { mapState } from 'vuex';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'Points',
   methods: {},
-  // data() {
-  //   return {
-  //     score: 0,
-  //   };
-  // },
-  computed: mapState({ score: (state) => state.score }),
+
+  computed: { ...mapGetters(['getScore']) },
 };
 </script>
 <style scoped>
