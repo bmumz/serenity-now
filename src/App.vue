@@ -9,8 +9,6 @@
 
       <Quotes />
 
-      <!-- <Result /> -->
-
       <Characters />
     </div>
   </div>
@@ -22,7 +20,6 @@ import Timer from './components/Timer.vue';
 import Points from './components/Points.vue';
 import Quotes from './components/Quotes.vue';
 import Characters from './components/Characters.vue';
-// import Result from './components/Result';
 
 export default {
   name: 'App',
@@ -32,7 +29,6 @@ export default {
     Points,
     Quotes,
     Characters,
-    // Result,
   },
 };
 </script>

@@ -4,10 +4,11 @@
       <span class="highlight"> {{ randomQuote.quote }}</span>
     </h1>
     <div v-else class="instructions">
-      <Instructions />
+      <Message />
       <Button :onClick="getNewQuote">
         <h1 slot="content" class="quote">
-          <span class="highlight">Start!</span>
+          <span class="highlight" v-if="handleResult">Try again!</span>
+          <span class="highlight" v-else>Start!</span>
         </h1>
       </Button>
     </div>
@@ -16,11 +17,11 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import Button from './Button.vue';
-import Instructions from './Instructions.vue';
+import Message from './Message.vue';
 
 export default {
   name: 'Quotes',
-  components: { Button, Instructions },
+  components: { Button, Message },
   methods: {
     ...mapActions(['fetchQuotes', 'getRandomQuote', 'startGame']),
     getNewQuote() {
@@ -29,7 +30,7 @@ export default {
       this.$store.commit('UPDATE_CHAR', '');
     },
   },
-  computed: mapGetters(['randomQuote', 'handleStartGame']),
+  computed: mapGetters(['randomQuote', 'handleStartGame', 'handleResult']),
   created() {
     this.fetchQuotes();
   },
