@@ -34,7 +34,7 @@ export default {
   font-size: 3.5rem;
   z-index: 1;
   position: absolute;
-  text-shadow: 0px 1px #000000;
+  text-shadow: 0px 0.6px #000000;
 }
 
 .header-background {
@@ -46,6 +46,12 @@ export default {
   padding: 0.25rem 0.5rem;
   border-radius: 75% 45%;
   box-shadow: 2px 2px 0px rgba(0, 0, 0, 1);
+}
+
+@media (min-width: 800px) {
+  .header {
+    text-shadow: 0px 1px #000000;
+  }
 }
 
 @media (max-width: 325px) {

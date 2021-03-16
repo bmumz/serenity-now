@@ -48,7 +48,7 @@ export default {
   z-index: 0;
   position: relative;
   color: red;
-  text-shadow: 0px 1px #000000;
+  text-shadow: 0px 0.6px #000000;
   line-height: 1.25;
 }
 .highlight {
@@ -64,6 +64,7 @@ export default {
 @media (min-width: 800px) {
   .quote {
     padding: 0 1rem;
+    text-shadow: 0px 1px #000000;
   }
 }
 </style>
