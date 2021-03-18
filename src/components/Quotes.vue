@@ -3,34 +3,21 @@
     <h1 class="quote" v-if="handleStartGame">
       <span class="highlight"> {{ randomQuote.quote }}</span>
     </h1>
-    <div v-else class="instructions">
-      <Message />
-      <Button :onClick="getNewQuote">
-        <h1 slot="content" class="quote">
-          <span class="highlight" v-if="handleResult">Try again!</span>
-          <span class="highlight" v-else>Start!</span>
-        </h1>
-      </Button>
-    </div>
+
+    <Message v-else />
   </div>
 </template>
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import Button from './Button.vue';
-import Message from './Message.vue';
+import Message from './GameMessages/Message';
 
 export default {
   name: 'Quotes',
-  components: { Button, Message },
+  components: { Message },
   methods: {
-    ...mapActions(['fetchQuotes', 'getRandomQuote', 'startGame']),
-    getNewQuote() {
-      this.startGame();
-      this.getRandomQuote();
-      this.$store.commit('UPDATE_CHAR', '');
-    },
+    ...mapActions(['fetchQuotes']),
   },
-  computed: mapGetters(['randomQuote', 'handleStartGame', 'handleResult']),
+  computed: mapGetters(['randomQuote', 'handleStartGame']),
   created() {
     this.fetchQuotes();
   },
