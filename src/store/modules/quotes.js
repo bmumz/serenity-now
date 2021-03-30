@@ -12,7 +12,6 @@ const getters = {
 const actions = {
   async fetchQuotes({ commit }) {
     if (!window.localStorage.store) {
-      console.log('fetched');
       const response = await axios.get(
         'https://seinfeld-quotes.herokuapp.com/quotes'
       );
