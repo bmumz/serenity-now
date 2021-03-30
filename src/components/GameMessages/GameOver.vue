@@ -9,16 +9,21 @@
       </h3>
 
       <AddHighscore ref="highscore" />
+
     </div>
   </div>
 </template>
 <script>
+
 import AddHighscore from '../AddHighscore';
+
 import { mapGetters } from 'vuex';
 
 export default {
   name: 'GameOver',
+
   components: { AddHighscore},
+
   computed: { ...mapGetters(['getScore']) },
 };
 </script>

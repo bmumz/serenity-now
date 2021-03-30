@@ -3,9 +3,9 @@ const state = {
   chosenCharacter: '',
   startGame: false,
   startTimer: false,
-  countdown: 10,
+  countdown: 15,
   isRunning: null,
-  showResult: false,
+  gameOver: false,
 };
 const getters = {
   getScore: (state) => state.score,
@@ -13,7 +13,7 @@ const getters = {
   startTimer: (state) => state.startTimer,
   handleCountdown: (state) => state.countdown,
   handleStartGame: (state) => state.startGame,
-  handleResult: (state) => state.showResult,
+  handleGameOver: (state) => state.gameOver
 };
 
 const actions = {
@@ -34,18 +34,18 @@ const actions = {
   startGame({ commit, dispatch }) {
     commit('START_GAME');
     dispatch('startTimer');
+    commit('SET_GAME_OVER', false);
   },
   handleLoss({ commit }) {
-    commit('SET_RESULT');
+    commit('SET_GAME_OVER', true);
     commit('STOP_GAME');
   },
 };
 const mutations = {
   START_GAME(state) {
     state.startGame = true;
-    state.countdown = 10;
+    state.countdown = 15;
     state.score = 0;
-    state.result = '';
   },
   STOP_GAME(state) {
     state.startGame = false;
@@ -62,9 +62,10 @@ const mutations = {
   SET_COUNTDOWN(state, value) {
     state.countdown = value;
   },
-  SET_RESULT(state) {
-    state.showResult = true;
+  SET_GAME_OVER(state, value) {
+    state.gameOver = value;
   },
+
 };
 
 export default { state, getters, actions, mutations };

@@ -1,5 +1,6 @@
 <template>
   <div class="message">
+
     <GameOver v-if="handleGameOver" />
     <Instructions  v-else/>
 
@@ -16,8 +17,10 @@ import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'Message',
+
   components: { GameOver, Instructions, Button },
   computed: mapGetters(['handleGameOver']),
+  
   methods: {
     ...mapActions(['fetchQuotes', 'getRandomQuote', 'startGame']),
     getNewQuote() {
