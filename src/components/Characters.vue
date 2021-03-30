@@ -1,10 +1,10 @@
 <template>
-  <div class="results">
+  <div class="results" >
     <h1 class="author" v-if="handleStartGame">
       {{ getChar === '' ? 'Who said it?!' : '- ' + getChar }}
     </h1>
 
-    <div class="characters">
+    <div class="characters" >
       <div v-for="(character, index) in characters" v-bind:key="index">
         <button
           class="button"
@@ -33,7 +33,7 @@ export default {
       ],
     };
   },
-  computed: mapGetters(['randomQuote', 'getChar', 'handleStartGame']),
+  computed: mapGetters(['randomQuote', 'getChar', 'handleStartGame', 'handleGameOver']),
   methods: {
     ...mapActions(['getRandomQuote', 'startTimer', 'stopTimer']),
     handleChooseCharacter(author, character) {
@@ -44,7 +44,7 @@ export default {
         if (character !== '') {
           const delay = setTimeout(() => {
             this.getRandomQuote();
-            this.$store.commit('SET_COUNTDOWN', 10);
+            this.$store.commit('SET_COUNTDOWN', 15);
             this.$store.commit('UPDATE_SCORE');
             this.$store.commit('UPDATE_CHAR', '');
             this.startTimer();

@@ -9,18 +9,21 @@
       </h3>
 
       <AddHighscore ref="highscore" />
-      <Leaderboard />
+
     </div>
   </div>
 </template>
 <script>
-import AddHighscore from '../Leaderboard/AddHighscore';
-import Leaderboard from '../Leaderboard/Leaderboard';
+
+import AddHighscore from '../AddHighscore';
+
 import { mapGetters } from 'vuex';
 
 export default {
   name: 'GameOver',
-  components: { AddHighscore, Leaderboard },
+
+  components: { AddHighscore},
+
   computed: { ...mapGetters(['getScore']) },
 };
 </script>

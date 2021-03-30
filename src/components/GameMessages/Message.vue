@@ -1,14 +1,12 @@
 <template>
   <div class="message">
-    <GameOver v-if="handleResult" />
-    <Instructions v-else />
 
-    <Button :onClick="getNewQuote">
-      <h1 slot="content" class="quote">
-        <span class="highlight" v-if="handleResult">Try Again!</span>
-        <span class="highlight" v-else>Start!</span>
-      </h1>
-    </Button>
+    <GameOver v-if="handleGameOver" />
+    <Instructions  v-else/>
+
+    <Button v-if="handleGameOver" :onClick="getNewQuote" title="Play Again!"/>
+    <Button v-else :onClick="getNewQuote" title="Start!"/>
+
   </div>
 </template>
 <script>
@@ -19,8 +17,10 @@ import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'Message',
-  components: { Instructions, GameOver, Button },
-  computed: mapGetters(['handleResult']),
+
+  components: { GameOver, Instructions, Button },
+  computed: mapGetters(['handleGameOver']),
+  
   methods: {
     ...mapActions(['fetchQuotes', 'getRandomQuote', 'startGame']),
     getNewQuote() {

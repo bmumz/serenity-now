@@ -4,7 +4,9 @@
       Test your Seinfeld knowledge!
       <br />
       <br />
-      You will have <i>10 seconds</i> to select the correct character who said
+
+      You will have <i>15 seconds</i> to select the correct character who said
+
       the quote shown. Good luck!
     </h2>
   </div>
