@@ -2,22 +2,13 @@
   <div id="app">
     <Header msg="Serenity Now!" />
     <div class="game-container">
-      <div class="scoring-container">
-        <Timer />
-        <Points />
-      </div>
-      <Quotes />
-      <Characters />
+      <router-view></router-view>
     </div>
   </div>
 </template>
 
 <script>
 import Header from './components/Header.vue';
-import Timer from './components/Timer.vue';
-import Points from './components/Points.vue';
-import Quotes from './components/Quotes.vue';
-import Characters from './components/Characters.vue';
 
 export default {
   name: 'App',
@@ -26,10 +17,6 @@ export default {
   },
   components: {
     Header,
-    Timer,
-    Points,
-    Quotes,
-    Characters,
   },
 };
 </script>
@@ -58,7 +45,7 @@ html {
 
 .game-container {
   margin-top: 2rem;
-  padding: 3rem;
+  padding: 2rem;
   background: #1c4a9f;
 }
 
@@ -94,11 +81,13 @@ h3 {
   }
 
   h2 {
-    font-size: 1.5em;
+    font-size: 1.5rem;
   }
 
   h3 {
     font-size: 1.17em;
   }
+
+
 }
 </style>
