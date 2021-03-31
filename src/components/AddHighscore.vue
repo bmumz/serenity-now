@@ -89,7 +89,7 @@ export default {
         .then((response) => {
           console.log(response);
           this.initials='';
-          this.$router.push('/highscores')
+          this.$router.push('/serenity-now/highscores')
   
         })
         .catch((error) => console.log(error));
