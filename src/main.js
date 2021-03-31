@@ -11,7 +11,7 @@ Vue.use(VueMeta);
 Vue.use(VueRouter);
 
 const routes = [
-  {path: '/serenity-now',
+  {path: '/serenity-now/',
 component: Home},
 {path: '/serenity-now/highscores',
 component: Leaderboard}
