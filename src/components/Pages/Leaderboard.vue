@@ -45,7 +45,7 @@ export default {
   methods: {
     ...mapActions(['startGame']),
     async getHighscores() {
-      await axios.get('http://localhost:3000/highscores').then((response) => {
+      await axios.get('https://serenity-now-leaderboard.herokuapp.com/highscores').then((response) => {
         this.scores = response.data;
       });
     },

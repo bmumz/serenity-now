@@ -79,7 +79,7 @@ export default {
     },
     setHighscore() {
       axios
-        .post('http://localhost:3000/highscores', {
+        .post('https://serenity-now-leaderboard.herokuapp.com/highscores', {
           highscore: {
             name:
               this.initials.first + this.initials.second + this.initials.third,
