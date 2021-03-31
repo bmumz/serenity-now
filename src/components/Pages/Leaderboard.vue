@@ -50,7 +50,7 @@ export default {
       });
     },
     playAgain() {
-      this.$router.push('/');
+      this.$router.push('/serenity-now/');
       this.startGame()
     },
   },
