@@ -1,8 +1,8 @@
-import axios from 'axios';
+import axios from "axios";
 
 const state = {
   quotes: [],
-  currentQuote: '',
+  currentQuote: "",
 };
 
 const getters = {
@@ -11,20 +11,20 @@ const getters = {
 
 const actions = {
   async fetchQuotes({ commit }) {
-    if (!window.localStorage.store) {
+    if (!window.sessionStorage.store) {
       const response = await axios.get(
-        'https://seinfeld-quotes.herokuapp.com/quotes'
+        "https://seinfeld-quotes.herokuapp.com/quotes"
       );
 
-      commit('SET_QUOTES', await response.data.quotes);
+      commit("SET_QUOTES", await response.data.quotes);
     }
   },
   async getRandomQuote({ state, dispatch, commit }) {
-    await dispatch('fetchQuotes');
+    await dispatch("fetchQuotes");
     const setRandomIndex = Math.floor(Math.random() * state.quotes.length);
     const getRandomQuote = state.quotes[setRandomIndex];
 
-    commit('SET_RANDOM', await getRandomQuote);
+    commit("SET_RANDOM", await getRandomQuote);
   },
 };
 
@@ -32,10 +32,10 @@ const mutations = {
   SET_QUOTES: (state, quotes) =>
     (state.quotes = quotes.filter(
       (quote) =>
-        quote.author === 'Elaine' ||
-        quote.author === 'Jerry' ||
-        quote.author === 'George' ||
-        quote.author === 'Kramer'
+        quote.author === "Elaine" ||
+        quote.author === "Jerry" ||
+        quote.author === "George" ||
+        quote.author === "Kramer"
     )),
 
   SET_RANDOM: (state, quote) => (state.currentQuote = quote),
